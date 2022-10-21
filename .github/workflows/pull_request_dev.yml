@@ -1,0 +1,26 @@
+name: Pull request to main
+on:
+  push:
+    branches:
+      [ develop ]
+  pull_request:
+    branches: 
+      [ develop ]
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Doing Test
+      run: |
+        echo "Testing ${{ github.ref }}"
+        echo "Test Succesfull"
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: main
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        pr_label: "feature, automated pr"
+        pr_title: "Pull request ${{ github.ref }} into main"
