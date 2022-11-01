@@ -1,13 +1,9 @@
-FROM node:12.4-alpine
-
-RUN mkdir /app
+FROM node:latest
+RUN mkdir -p app/node_modules && chown -R node:node /app
 WORKDIR /app
-
-COPY package.json package.json
-RUN npm install && mv node_modules /node_modules
-
-COPY . .
-
-LABEL maintainer="Austin Loveless"
-
-CMD node app.js
+COPY package*.json ./
+USER node
+RUN npm install
+COPY — chown=node:node . .
+EXPOSE 3000
+CMD npm start
