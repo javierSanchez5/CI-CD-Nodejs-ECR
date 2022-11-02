@@ -5,11 +5,16 @@ var pg = require('pg');
 var data;
 
 const connectionData = {
-  host: process.env.RDS_HOSTNAME,
-  user: process.env.RDS_USERNAME,
-  password: process.env.RDS_PASSWORD,
-  port: process.env.RDS_PORT,
-  database: process.env.RDS_DATABASE
+  //host: process.env.RDS_HOSTNAME,
+  //user: process.env.RDS_USERNAME,
+  //password: process.env.RDS_PASSWORD,
+  //port: process.env.RDS_PORT,
+  //database: process.env.RDS_DATABASE
+  host: "databasenode-instance.c3todq2z656f.us-east-1.rds.amazonaws.com",
+  user: "postgresAdmin",
+  password: "xstrongDrSp",
+  port: 5432,
+  database: "first_test_db"
 };
 
 const client = new pg.Client(connectionData);
