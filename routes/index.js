@@ -7,10 +7,10 @@ var data;
 
 const connectionData = {
   host: process.env.RDS_HOSTNAME,
-  user: process.env.RDS_USERNAME,
-  password: process.env.RDS_PASSWORD,
-  port: process.env.RDS_PORT,
-  database: process.env.RDS_DATABASE
+  user: "postgresAdmin",//process.env.RDS_USERNAME,
+  password: "xstrongDrSp",//process.env.RDS_PASSWORD,
+  port: 5432, "process.env.RDS_PORT,
+  database: "test_ead"//process.env.RDS_DATABASE
 
 };
 
