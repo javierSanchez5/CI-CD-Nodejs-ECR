@@ -40,14 +40,16 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: frontend
+          IMAGE_TAG: ${{ steps.release.outputs.version }}
           # https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
         run: |
-            docker image build \
-              --build-arg NODE_ENV=production \
-              --build-arg VERSION=${{ github.ref_name }} \
-              --tag ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ steps.release.outputs.version }} \
-             .
-            docker push --all-tags ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
+            # Build a docker container and
+            # push it to ECR so that it can
+            # be deployed to ECS.
+            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
