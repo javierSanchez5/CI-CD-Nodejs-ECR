@@ -1,7 +1,7 @@
 # application Node JS
 
 ## Description
-Node js application that will be running in an ECS service with Fargate. The application read data from a database (RDS postgres). Every branches has its own workflow to deploy the image to a ECR y be tested in AWS.
+Node js application that will be running in an ECS service with Fargate. The application write and read data from a database (RDS postgres). Every branches has its own workflow to deploy the image to a ECR and be tested in AWS.
 
 ## Environments
 ![env](github.png)
