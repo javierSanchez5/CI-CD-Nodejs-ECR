@@ -4,9 +4,8 @@
 Node js application that will be running in an ECS service with Fargate. The application read data from a database (RDS postgres). Every branches has its own workflow to deploy the image to a ECR y be tested in AWS.
 
 ## Environments
-- dev: 
-- stg
-- prod
+![env](github.png)
+
 
 ## Workflow
 - dev: where you develop your code and test. The image will be deploy with github actions to ECR. Enviroment similar to prod, to be able to find out issues.
