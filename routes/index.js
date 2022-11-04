@@ -27,7 +27,7 @@ client.query('SELECT * FROM contacts')
   })
 
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Contacts'*, items: data.map(item =>{
+  res.render('index', { title: 'Contacts', items: data.map(item =>{
     return ["Name: ",item.username,"Phone: ", item.phone].join(" ");
   })});
 });
