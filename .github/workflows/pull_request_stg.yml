@@ -15,13 +15,7 @@ jobs:
       AWS_REGION: us-east-1
       ECR_REPOSITORY: frontend
       
-    steps:
-    - id: release
-      uses: rymndhng/release-on-push-action@master
-      with:
-        bump_version_scheme: minor
-        tag_prefix: v
-        
+    steps:      
     - name: Check Output Parameters
       run: |
         echo "Got tag name ${{ steps.release.outputs.tag_name }}"
@@ -46,7 +40,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: frontend
-        IMAGE_TAG: ${{ steps.release.outputs.version }}
+        IMAGE_TAG: ${{ github.sha }}
       run: |
             # Build a docker container and
             # push it to ECR so that it can
